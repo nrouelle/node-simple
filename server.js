@@ -2,6 +2,12 @@ var http = require('http');
 
 var url = require("url");
 var querystring = require('querystring');
+var LINQ = require('node-linq').LINQ;
+
+function getDatas() {
+    var sampleDatas = [{id:1,title:'toto'}, {id:2,title:'tata'}];
+    return sampleDatas;
+}
 
 var server = http.createServer( (req, res) => {
     var page = url.parse(req.url).pathname;
@@ -11,6 +17,7 @@ var server = http.createServer( (req, res) => {
     
     console.log(page);
     res.writeHead(200, {"Content-Type": "text/html"});
+
     if(page =='/') {
         res.write('Vous êtes à l\'accueil');
         console.log(params['nom']);
@@ -27,18 +34,17 @@ var server = http.createServer( (req, res) => {
         var id = regexId.exec(page)[1];
 
         res.writeHead(200, {"Content-Type": "application/json"});
-
-        var sample = {'id':1, 'title':'toto'};
-        var sampleDatas = [{'id':1, 'title':'toto'}, {'id':2, 'title':'tata'}];
-
-        res.write(JSON.stringify(sampleDatas[id]));
+        var task = new LINQ(getDatas()).Where(function(item) { return item.id == id; })
+                    .Single();
+        
+        res.write(task.title);
         res.end();
     }
     else if(page =='/task') {
         res.writeHead(200, {"Content-Type": "application/json"});
 
         var sample = {'id':1, 'title':'toto'};
-        var sampleDatas = [{'id':1, 'title':'toto'}, {'id':2, 'title':'tata'}];
+        
 
         res.write(JSON.stringify(sampleDatas));
         res.end();

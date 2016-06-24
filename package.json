@@ -1,0 +1,28 @@
+{
+  "name": "simple-rest-api",
+  "version": "0.0.1",
+  "description": "This is a sample on how to create a very simple rest api",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrouelle/node-simple.git"
+  },
+  "keywords": [
+    "node",
+    "rest"
+  ],
+  "author": "Nadege Rouelle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrouelle/node-simple/issues"
+  },
+  "homepage": "https://github.com/nrouelle/node-simple#readme",
+  "dependencies": {
+    "jslinq": "^1.0.15",
+    "node-linq": "0.0.5"
+  }
+}
